@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class BlockChain {
 
-	private ArrayList<Block> chain;
+	private ArrayList<Block> chain= new ArrayList<Block>();
 	
 	public BlockChain(String[] transacciones){
 		Block block1 = new Block(0, transacciones);
@@ -14,9 +14,15 @@ public class BlockChain {
 		this.Add(b);
 	}
 	
-	public void Add(String[] trans){
-		int previousHash = this.chain.get(this.chain.size()).getHashCode();
+	public void AddtoBlock(String[] trans){
+		int previousHash = chain.get(chain.size()-1).getHashCode();
 		Block b1 = new Block(previousHash, trans);
-		this.Add(b1);
+		this.chain.add(b1);
 	}
+	
+	public int GetHashBlock(int index){
+		return ((Block)chain.toArray()[index]).getHashCode();
+	}
+	
+	
 }
